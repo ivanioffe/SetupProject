@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_login_title">С возвращением</string>
+    <string name="auth_login_description">Войдите в сохранённый аккаунт</string>
+    <string name="auth_registration_title">Создать аккаунт</string>
+    <string name="auth_registration_description">Зарегистрируйтесь, чтобы продолжить</string>
+    <string name="auth_username">Имя пользователя</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Пароль</string>
+    <string name="auth_show_password">Показать</string>
+    <string name="auth_hide_password">Скрыть</string>
+    <string name="auth_password_hint">Не менее 8 символов</string>
+    <string name="auth_login">Войти</string>
+    <string name="auth_register">Зарегистрироваться</string>
+    <string name="auth_create_account">Нет аккаунта? Зарегистрироваться</string>
+    <string name="auth_already_registered">Уже есть аккаунт? Войти</string>
+    <string name="auth_error_username">Введите имя от 1 до 40 символов</string>
+    <string name="auth_error_email">Введите корректный email</string>
+    <string name="auth_error_password">Пароль должен содержать от 8 до 128 символов</string>
+    <string name="auth_error_credentials">Неверный email или пароль</string>
+    <string name="auth_error_account_exists">На устройстве уже есть аккаунт. Перейдите ко входу.</string>
+    <string name="auth_error_storage">Не удалось прочитать или сохранить данные. Попробуйте ещё раз.</string>
+</resources>

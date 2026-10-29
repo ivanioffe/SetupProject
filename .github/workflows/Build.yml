@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v7
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
+          cache-read-only: false
+
+      - name: Run check
+        run: ./gradlew check --continue
+
+      - name: Upload check reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: check-reports
+          path: |
+            **/build/reports/**
+            **/build/test-results/**/TEST-*.xml
+          if-no-files-found: warn
+          retention-days: 14

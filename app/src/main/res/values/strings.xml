@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SetupProject</string>
+    <string name="session_error">Не удалось прочитать сохранённый аккаунт.</string>
+    <string name="retry">Повторить</string>
+</resources>
