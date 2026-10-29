@@ -19,13 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
+// CI-DEMO: modifier расположен после необязательного viewModel.
 @Composable
 fun HomeRoute(
     username: String,
-    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
 ) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+  val state by viewModel.uiState.collectAsStateWithLifecycle();
     HomeScreen(
         username = username,
         state = state,
@@ -67,9 +68,10 @@ fun HomeScreen(
     }
 }
 
+// CI-DEMO: публичный Preview для правила PreviewPublic.
 @Preview(showBackground = true)
 @Composable
-private fun HomeScreenPreview() {
+fun HomeScreenPreview() {
     MaterialTheme {
         HomeScreen(username = "Иван", state = HomeUiState(), onLogout = {})
     }

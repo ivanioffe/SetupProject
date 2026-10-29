@@ -9,13 +9,14 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.Flow
 
+// CI-DEMO: modifier после необязательного viewModel нарушает порядок Compose.
 @Composable
 fun LoginRoute(
     onRegisterClick: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: LoginViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
 ) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+  val state by viewModel.uiState.collectAsStateWithLifecycle()
     AuthEffects(viewModel.effects)
     LoginScreen(
         state = state,
@@ -28,10 +29,10 @@ fun LoginRoute(
 @Composable
 fun RegistrationRoute(
     onLoginClick: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: RegistrationViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
 ) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+  val state by viewModel.uiState.collectAsStateWithLifecycle()
     AuthEffects(viewModel.effects)
     RegistrationScreen(
         state = state,

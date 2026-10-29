@@ -10,8 +10,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface RepositoryModule {
+// CI-DEMO: абстрактный класс вместо интерфейса для Detekt.
+abstract class RepositoryModule {
     @Singleton
     @Binds
-    fun bindAuthRepository(repository: DefaultAuthRepository): AuthRepository
+    // CI-DEMO: пропущен пробел после двоеточия для ktlint.
+    abstract fun bindAuthRepository(repository:DefaultAuthRepository): AuthRepository
 }

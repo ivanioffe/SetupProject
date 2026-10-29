@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class PreferencesCredentialStore @Inject constructor(
-    private val dataStore: DataStore<Preferences>,
+    // CI-DEMO: пропущен пробел после двоеточия для ktlint.
+    private val dataStore:DataStore<Preferences>,
 ) : CredentialStore {
     override val credentials =
         dataStore.data.map { preferences ->
@@ -20,7 +21,8 @@ class PreferencesCredentialStore @Inject constructor(
                 StoredCredentials(
                     email = email,
                     password = password,
-                    isSignedIn = preferences[IS_SIGNED_IN] == true,
+                    // CI-DEMO: Elvis для nullable Boolean вызывает Detekt.
+                    isSignedIn = preferences[IS_SIGNED_IN] ?: false,
                 )
             } else {
                 null

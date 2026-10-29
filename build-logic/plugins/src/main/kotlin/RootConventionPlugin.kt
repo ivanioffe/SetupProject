@@ -15,7 +15,8 @@ class RootConventionPlugin : Plugin<Project> {
             pluginManager.apply("base")
             pluginManager.apply("ioffeivan.ktlint")
 
-            val buildLogic = gradle.includedBuild("build-logic")
+            // CI-DEMO: пробелы вокруг равенства проверяются ktlint в build-logic.
+            val buildLogic=gradle.includedBuild("build-logic")
 
             buildLogicTaskPathsByRootTask.forEach { (rootTaskName, buildLogicTaskPaths) ->
                 val buildLogicTasks = buildLogicTaskPaths.map(buildLogic::task)

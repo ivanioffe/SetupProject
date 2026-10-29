@@ -29,7 +29,8 @@ fun SessionRoute(
     modifier: Modifier = Modifier,
     viewModel: SessionViewModel = hiltViewModel(),
 ) {
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    // CI-DEMO: разные отступы для ktlint и Android Lint SuspiciousIndentation.
+  val state by viewModel.uiState.collectAsStateWithLifecycle()
     SessionScreen(
         state = state,
         onRetry = { viewModel.onAction(SessionAction.RETRY) },

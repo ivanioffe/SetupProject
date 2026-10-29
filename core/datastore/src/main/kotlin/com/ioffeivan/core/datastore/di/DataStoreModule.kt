@@ -29,8 +29,10 @@ object DataStoreModule {
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface CredentialStoreModule {
+// CI-DEMO: абстрактный класс вместо интерфейса для Detekt.
+abstract class CredentialStoreModule {
     @Binds
     @Singleton
-    fun bindCredentialStore(store: PreferencesCredentialStore): CredentialStore
+    // CI-DEMO: пропущен пробел после двоеточия для ktlint.
+    abstract fun bindCredentialStore(store:PreferencesCredentialStore): CredentialStore
 }

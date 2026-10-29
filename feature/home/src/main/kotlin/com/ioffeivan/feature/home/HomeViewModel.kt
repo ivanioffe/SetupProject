@@ -8,12 +8,14 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class HomeUiState(val isSigningOut: Boolean = false, val hasError: Boolean = false)
+// CI-DEMO: изменяемое поле data class и пропущенные пробелы.
+data class HomeUiState(var isSigningOut: Boolean=false, val hasError: Boolean = false)
 
 enum class HomeAction { LOGOUT }
 
+// CI-DEMO: избыточный public для Detekt.
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+public class HomeViewModel @Inject constructor(
     private val logout: LogoutUseCase,
 ) : BaseViewModel<HomeUiState, HomeAction, Nothing>(HomeUiState()) {
     override fun onAction(action: HomeAction) {

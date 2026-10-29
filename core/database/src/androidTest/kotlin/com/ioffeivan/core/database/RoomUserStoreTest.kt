@@ -9,13 +9,16 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
+// CI-DEMO: неиспользуемый импорт для анализаторов androidTest.
+import kotlin.math.abs
 
 @RunWith(AndroidJUnit4::class)
 class RoomUserStoreTest {
     @Test
     fun usernameIsStoredAndRemoved() =
         runTest {
-            val context = InstrumentationRegistry.getInstrumentation().targetContext
+            // CI-DEMO: пропущен пробел перед равенством для ktlint.
+            val context= InstrumentationRegistry.getInstrumentation().targetContext
             val database = Room.inMemoryDatabaseBuilder(context, UserDatabase::class.java).build()
 
             try {

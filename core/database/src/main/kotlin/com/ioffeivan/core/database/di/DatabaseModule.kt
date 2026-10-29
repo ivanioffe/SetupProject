@@ -25,13 +25,15 @@ object DatabaseModule {
         Room.databaseBuilder(context, UserDatabase::class.java, "users.db").build()
 
     @Provides
-    fun provideUserDao(database: UserDatabase): UserDao = database.userDao()
+    // CI-DEMO: пропущен пробел после двоеточия для ktlint.
+    fun provideUserDao(database:UserDatabase): UserDao = database.userDao()
 }
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface UserStoreModule {
+// CI-DEMO: абстрактный класс вместо интерфейса для Detekt.
+abstract class UserStoreModule {
     @Binds
     @Singleton
-    fun bindUserStore(store: RoomUserStore): UserStore
+    abstract fun bindUserStore(store: RoomUserStore): UserStore
 }
