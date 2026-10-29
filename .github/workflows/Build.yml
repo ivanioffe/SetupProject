@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   check:
-    name: Verification
+    name: verification
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -31,13 +31,40 @@ jobs:
       - name: Run check
         run: ./gradlew check --continue
 
-      - name: Upload check reports
-        if: always()
+      - name: Upload ktlint reports
+        if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: check-reports
+          name: ktlint-reports
+          path: '**/build/reports/ktlint/**'
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Upload Detekt reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: detekt-reports
+          path: '**/build/reports/detekt/**'
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Upload Android Lint reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-lint-reports
+          path: '**/build/reports/lint-results-*'
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Upload unit test reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: unit-test-reports
           path: |
-            **/build/reports/**
+            **/build/reports/tests/**
             **/build/test-results/**/TEST-*.xml
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 7
