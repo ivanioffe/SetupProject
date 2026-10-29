@@ -15,8 +15,7 @@ sealed interface SessionState {
 
     data object SignedOut : SessionState
 
-    // CI-DEMO: изменяемая модель для DataClassShouldBeImmutable.
-    data class SignedIn(var user: User) : SessionState
+    data class SignedIn(val user: User) : SessionState
 
     data object StorageError : SessionState
 }

@@ -16,22 +16,18 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertThrows
 import org.junit.Test
 import java.io.IOException
-// CI-DEMO: неиспользуемый импорт для Detekt и ktlint.
-import kotlin.math.abs
 
 class DefaultAuthRepositoryTest {
     private val users = FakeUserStore()
     private val credentials = FakeCredentialStore()
-    // CI-DEMO: пропущен пробел перед равенством для ktlint.
-    private val repository= DefaultAuthRepository(users, credentials)
+    private val repository = DefaultAuthRepository(users, credentials)
 
     @Test
     fun `registration persists both stores and restores the session`() =
         runTest {
             assertEquals(AuthResult.Success, repository.register("Ivan", EMAIL, PASSWORD))
 
-            // CI-DEMO: неверное ожидание намеренно роняет существующий unit-тест.
-            assertEquals("CI-DEMO-expected-user", users.readUsername())
+            assertEquals("Ivan", users.readUsername())
             assertEquals(StoredCredentials(EMAIL, PASSWORD, isSignedIn = true), credentials.readCredentials())
             val recreatedRepository = DefaultAuthRepository(users, credentials)
             assertEquals(User("Ivan"), recreatedRepository.currentUser.first())

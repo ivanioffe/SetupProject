@@ -21,11 +21,10 @@ class AuthUseCasesTest {
     @Test
     fun `registration normalizes user details and preserves password exactly`() =
         runTest {
-            val result=register("  Иван  ", "  IVAN@Example.COM  ", " password ")
+            val result = register("  Иван  ", "  IVAN@Example.COM  ", " password ")
 
             assertEquals(AuthResult.Success, result)
-            // CI-DEMO: неверное ожидаемое имя гарантированно роняет этот тест.
-            assertEquals(Registration("ИВАН", "ivan@example.com", " password "), repository.registration)
+            assertEquals(Registration("Иван", "ivan@example.com", " password "), repository.registration)
         }
 
     @Test
@@ -89,8 +88,7 @@ class AuthUseCasesTest {
         }
 }
 
-// CI-DEMO: намеренные нарушения Detekt и ktlint в тестовой модели.
-private data class Registration(var username:String, val email: String, val password: String)
+private data class Registration(val username: String, val email: String, val password: String)
 
 private class FakeAuthRepository : AuthRepository {
     override val currentUser = MutableStateFlow<User?>(null)

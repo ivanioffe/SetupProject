@@ -25,8 +25,7 @@ abstract class AuthViewModel : BaseViewModel<AuthUiState, AuthAction, AuthEffect
     protected abstract suspend fun authenticate(state: AuthUiState): AuthResult
 
     private fun submit() {
-        // CI-DEMO: лишняя точка с запятой для ktlint.
-        val submittedState = uiState.value;
+        val submittedState = uiState.value
         updateState { it.copy(isSubmitting = true, error = null) }
         viewModelScope.launch {
             try {
@@ -47,9 +46,8 @@ abstract class AuthViewModel : BaseViewModel<AuthUiState, AuthAction, AuthEffect
     }
 }
 
-// CI-DEMO: избыточный public для Detekt.
 @HiltViewModel
-public class LoginViewModel @Inject constructor(
+class LoginViewModel @Inject constructor(
     private val login: LoginUseCase,
 ) : AuthViewModel() {
     override suspend fun authenticate(state: AuthUiState): AuthResult = login(state.email, state.password)

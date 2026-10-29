@@ -2,10 +2,9 @@ package com.ioffeivan.feature.auth
 
 import com.ioffeivan.core.domain.model.AuthError
 
-// CI-DEMO: изменяемые поля состояния и пропущенные пробелы для линтеров.
 data class AuthUiState(
-    var username: String = "",
-    var email: String="",
+    val username: String = "",
+    val email: String = "",
     val password: String = "",
     val isPasswordVisible: Boolean = false,
     val isSubmitting: Boolean = false,

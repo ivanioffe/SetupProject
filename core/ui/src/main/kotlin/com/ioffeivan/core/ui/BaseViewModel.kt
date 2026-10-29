@@ -9,9 +9,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 
-// CI-DEMO: лишний public и ошибки форматирования для Detekt/ktlint.
-public abstract class BaseViewModel<State, Action, Effect>(initialState:State) : ViewModel() {
-    private val mutableState= MutableStateFlow(initialState)
+abstract class BaseViewModel<State, Action, Effect>(initialState: State) : ViewModel() {
+    private val mutableState = MutableStateFlow(initialState)
     private val effectChannel = Channel<Effect>(Channel.BUFFERED)
 
     val uiState: StateFlow<State> = mutableState.asStateFlow()
@@ -23,7 +22,7 @@ public abstract class BaseViewModel<State, Action, Effect>(initialState:State) :
         mutableState.update(transform)
     }
 
-    protected suspend fun sendEffect(effect:Effect) {
+    protected suspend fun sendEffect(effect: Effect) {
         effectChannel.send(effect)
     }
 

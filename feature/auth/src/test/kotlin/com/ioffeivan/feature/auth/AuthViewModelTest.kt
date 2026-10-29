@@ -24,9 +24,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-// CI-DEMO: избыточный public проверяет Detekt в тестовом исходнике.
 @OptIn(ExperimentalCoroutinesApi::class)
-public class AuthViewModelTest {
+class AuthViewModelTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(StandardTestDispatcher())
@@ -34,7 +33,7 @@ public class AuthViewModelTest {
 
     @After
     fun tearDown() {
-        Dispatchers.resetMain();
+        Dispatchers.resetMain()
     }
 
     @Test
@@ -69,8 +68,7 @@ public class AuthViewModelTest {
 
             assertEquals(AuthError.INVALID_USERNAME, viewModel.uiState.value.error)
             assertFalse(viewModel.uiState.value.isSubmitting)
-            // CI-DEMO: хранилище не вызывается, ожидание 1 намеренно роняет unit-тест.
-            assertEquals(1,repository.registrationCalls)
+            assertEquals(0, repository.registrationCalls)
 
             viewModel.onAction(AuthAction.UsernameChanged("Иван"))
             assertEquals(null, viewModel.uiState.value.error)

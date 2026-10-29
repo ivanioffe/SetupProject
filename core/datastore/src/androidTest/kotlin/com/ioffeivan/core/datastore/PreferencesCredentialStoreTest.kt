@@ -13,16 +13,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
 import java.util.UUID
-// CI-DEMO: неиспользуемый импорт для анализаторов androidTest.
-import kotlin.math.abs
 
 @RunWith(AndroidJUnit4::class)
 class PreferencesCredentialStoreTest {
     @Test
     fun credentialsSurviveReopeningAndLogout() =
         runTest {
-            // CI-DEMO: пропущен пробел перед равенством для ktlint.
-            val context= InstrumentationRegistry.getInstrumentation().targetContext
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
             val file = File(context.cacheDir, "credentials-${UUID.randomUUID()}.preferences_pb")
             val firstJob = SupervisorJob()
             val secondJob = SupervisorJob()

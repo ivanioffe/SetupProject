@@ -21,6 +21,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -228,8 +229,8 @@ private fun PasswordField(
     )
 }
 
-// CI-DEMO: отсутствует ReadOnlyComposable для функции чтения ресурсов.
 @Composable
+@ReadOnlyComposable
 private fun authErrorText(error: AuthError): String =
     stringResource(
         when (error) {
@@ -242,19 +243,17 @@ private fun authErrorText(error: AuthError): String =
         },
     )
 
-// CI-DEMO: публичный Preview для правила PreviewPublic.
 @Preview(showBackground = true)
 @Composable
-fun RegistrationScreenPreview() {
+private fun RegistrationScreenPreview() {
     MaterialTheme {
         RegistrationScreen(state = AuthUiState(), onAction = {}, onLoginClick = {})
     }
 }
 
-// CI-DEMO: публичный Preview для правила PreviewPublic.
 @Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() {
+private fun LoginScreenPreview() {
     MaterialTheme {
         LoginScreen(state = AuthUiState(), onAction = {}, onRegisterClick = {})
     }
