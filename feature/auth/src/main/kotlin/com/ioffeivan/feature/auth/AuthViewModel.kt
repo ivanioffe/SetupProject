@@ -25,7 +25,6 @@ abstract class AuthViewModel : BaseViewModel<AuthUiState, AuthAction, AuthEffect
     protected abstract suspend fun authenticate(state: AuthUiState): AuthResult
 
     private fun submit() {
-        // Лишняя точка с запятой оставлена для проверки ktlint.
         val submittedState = uiState.value
         updateState { it.copy(isSubmitting = true, error = null) }
         viewModelScope.launch {

@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   check:
-    name: Verification
+    name: verification
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -32,7 +32,7 @@ jobs:
         run: ./gradlew check --continue
 
       - name: Upload check reports
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v7
         with:
           name: check-reports
@@ -40,4 +40,4 @@ jobs:
             **/build/reports/**
             **/build/test-results/**/TEST-*.xml
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 7
